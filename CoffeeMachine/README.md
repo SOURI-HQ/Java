@@ -1,18 +1,14 @@
-# Coffee Machine
+# HyperSkill Project: Coffee Machine
 
 Credit: https://hyperskill.org/projects/33?track=1
 
 ## About
-What can be better than a cup of coffee during a break? A coffee that you don’t have to make yourself.
-It’s enough to press a couple of buttons on the machine and you get a cup of energy; but first, we should teach the machine how to do it.
-In this project, you will work on programming a coffee machine simulator.
-The machine works with typical products: coffee, milk, sugar, and plastic cups; if it runs out of something, it shows a notification.
-You can get three types of coffee: espresso, cappuccino and latte. Since nothing’s for free, it also collects the money.
+What can be better than a cup of coffee during a break? A coffee that you don’t have to make yourself. It’s enough to press a couple of buttons on the machine and you get a cup of energy; but first, we should teach the machine how to do it. In this project, you will work on programming a coffee machine simulator. The machine works with typical products: coffee, milk, sugar, and plastic cups; if it runs out of something, it shows a notification. You can get three types of coffee: espresso, cappuccino and latte. Since nothing’s for free, it also collects the money.
 
 ## Current Stage #6: Brush your code
 Time for some final touch-ups: structure the code so that it runs smoothly.
 
-Description
+### Description
 
 Let's redesign our program and write a class that represents the coffee machine. The class should have a method that takes a string as input. Every time the user inputs a line (a string) to the console, the program invokes this method with one argument: the line that user input to the console. This system simulates pretty accurately how real-world electronic devices work. External components (like buttons on the coffee machine or tapping on the screen) generate events that pass into the single interface of the program.
 
