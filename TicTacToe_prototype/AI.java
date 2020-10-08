@@ -32,10 +32,10 @@ public class AI extends Player {
         randomRow = random.nextInt(3);
         randomColumn = random.nextInt(3);
         System.out.println("Making move level \"easy\"");
-        while (board.getBoard()[randomRow][randomColumn] != ' ') {
+        while (board.getField()[randomRow][randomColumn] != ' ') {
             randomRow = random.nextInt(3);
             randomColumn = random.nextInt(3);
-            if (board.getBoard()[randomRow][randomColumn] == ' ') {
+            if (board.getField()[randomRow][randomColumn] == ' ') {
                 break;
             }
         }

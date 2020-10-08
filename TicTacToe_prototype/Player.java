@@ -5,9 +5,6 @@ public abstract class Player {
     private char symbol;
     private boolean isUser;
 
-    Player() {
-    }
-
     Player(char symbol) {
         this.symbol = symbol;
     }

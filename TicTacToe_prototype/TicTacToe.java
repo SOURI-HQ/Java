@@ -1,11 +1,11 @@
 package tictactoe;
 import java.util.Scanner;
-import java.util.Random;
 
 public class TicTacToe {
+    private final Scanner scanner = new Scanner(System.in);
     private char[][] field = new char[3][3];
-    private final Player player1;
-    private final Player player2;
+    private Player player1;
+    private Player player2;
     private Player currentPlayer;
 
     public TicTacToe() {
@@ -21,19 +21,53 @@ public class TicTacToe {
                 this.field[i][j] = ' ';
             }
         }
-
     }
 
     public void play() {
-        while (getResults().equals("Game not finished")) {
-            printField();
-            registerMove(currentPlayer.getMove(this), currentPlayer.getSymbol());
-            swapTurns();
+        while (true) {
+            System.out.println("Input command: ");
+            String[] input = scanner.nextLine().split(" ");
+            if (input[0].equals("exit")) {
+                break;
+            }
+            if (input.length != 3) {
+                System.out.println("Bad parameter!");
+            }
+            else if (input[0].equals("start")) {
+                player1 = determinePlayerType(input[1]);
+                player2 = determinePlayerType(input[2]);
+                if (player1 == null || player2 == null) {
+                    System.out.println("Bad parameters!");
+                    continue;
+                }
+                player1.setSymbol('X');
+                player2.setSymbol('O');
+                currentPlayer = player1;
+                while (getResults().equals("Game not finished")) {
+                    printField();
+                    registerMove(currentPlayer.getMove(this), currentPlayer.getSymbol());
+                    swapTurns();
+                }
+                printField();
+                System.out.println(getResults());
+                cleanField();
+            }
+            else {
+                System.out.println("Bad parameters!");
+            }
         }
-        printField();
-        System.out.println(getResults());
     }
 
+    public Player determinePlayerType(String input) {
+        switch(input) {
+            case "easy":
+                return new AI('?', AI.Difficulty.EASY);
+            case "user":
+                return new User('?');
+            default:
+                return null;
+        }
+    }
 
     public void swapTurns() {
         currentPlayer = currentPlayer.equals(player1) ? player2 : player1;
@@ -65,7 +99,15 @@ public class TicTacToe {
         field[board[0]][board[1]] = symbol;
     }
 
-    public int[] isInputCorrect(String[] input) {
+    public void cleanField() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = ' ';
+            }
+        }
+    }
+
+    public int[] checkEnteredCoordinatesValidity(String[] input) {
         if (input[0].matches("[0-9]") && input[1].matches("[0-9]")) {
             if (input[0].matches("[1-3]") && input[1].matches("[1-3]")) {
                 int xInt = Integer.parseInt(input[0]) - 1;
@@ -80,16 +122,16 @@ public class TicTacToe {
                 }
             }
             else {
-                    System.out.println("Coordinates should be from 1 to 3!");
+                System.out.println("Coordinates should be from 1 to 3!");
                 return new int[] {0, 0, 0};
-                }
-            } else {
-                System.out.println("You should enter numbers!");
-            return new int[] {0, 0, 0};
             }
+        } else {
+            System.out.println("You should enter numbers!");
+            return new int[] {0, 0, 0};
         }
+    }
 
-    public void printField () {
+    public void printField() {
         System.out.println("---------");
         for (int i = 0; i < 3; i++) {
             System.out.print("|");
@@ -101,7 +143,7 @@ public class TicTacToe {
         System.out.println("---------");
     }
 
-    public char[][] getBoard() {
+    public char[][] getField() {
         return field;
     }
 
