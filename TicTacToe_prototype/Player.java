@@ -1,7 +1,6 @@
 package tictactoe;
 
 public abstract class Player {
-
     private char symbol;
     private boolean isUser;
 
@@ -27,8 +26,4 @@ public abstract class Player {
         this.isUser = isUser;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj;
-    }
 }

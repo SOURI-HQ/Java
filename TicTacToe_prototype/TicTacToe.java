@@ -1,4 +1,6 @@
 package tictactoe;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -25,13 +27,13 @@ public class TicTacToe {
 
     public void play() {
         while (true) {
-            System.out.println("Input command: ");
+            System.out.print("Input command: > ");
             String[] input = scanner.nextLine().split(" ");
             if (input[0].equals("exit")) {
                 break;
             }
             if (input.length != 3) {
-                System.out.println("Bad parameter!");
+                System.out.println("Bad parameters!");
             }
             else if (input[0].equals("start")) {
                 player1 = determinePlayerType(input[1]);
@@ -60,10 +62,14 @@ public class TicTacToe {
 
     public Player determinePlayerType(String input) {
         switch(input) {
-            case "easy":
-                return new AI('?', AI.Difficulty.EASY);
             case "user":
                 return new User('?');
+            case "easy":
+                return new AI('?', AI.Difficulty.EASY);
+            case "medium":
+                return new AI('?', AI.Difficulty.MEDIUM);
+            case "hard":
+                return new AI('?', AI.Difficulty.HARD);
             default:
                 return null;
         }
@@ -95,6 +101,22 @@ public class TicTacToe {
         return "Draw";
     }
 
+    public String getResults(char playerSymbol) {
+        int j = 0;
+        for (int i = 0; i < 3; i++) {
+            // horizontally
+            if (field[i][j] == playerSymbol && field[i][j] != ' ' && field[i][j] == field[i][j+1] && field[i][j+1] == field[i][j+2])
+                return "true";
+            // vertically
+            if (field[j][i] == playerSymbol && field[j][i] != ' ' && field[j][i] == field[j+1][i] && field[j][i] == field[j+2][i])
+                return "true";
+        }
+        // diagonally
+        if (field[1][1] == playerSymbol && (field[1][1] != ' ' && field[0][0] == field[1][1] && field[1][1] == field[2][2] || field[1][1] != ' ' && field[0][2] == field[1][1] && field[1][1] == field[2][0]))
+            return "true";
+        return "false";
+    }
+
     public void registerMove(int[] board, char symbol) {
         field[board[0]][board[1]] = symbol;
     }
@@ -110,9 +132,9 @@ public class TicTacToe {
     public int[] checkEnteredCoordinatesValidity(String[] input) {
         if (input[0].matches("[0-9]") && input[1].matches("[0-9]")) {
             if (input[0].matches("[1-3]") && input[1].matches("[1-3]")) {
-                int xInt = Integer.parseInt(input[0]) - 1;
-                int yInt = Integer.parseInt(input[1]);
-                yInt = yInt == 1 ? 2 : yInt == 3 ? 0 : 1;
+                int xInt = Integer.parseInt(input[1]) - 1;
+                int yInt = Integer.parseInt(input[0]) - 1;
+                //yInt = yInt == 1 ? 2 : yInt == 3 ? 0 : 1;
                 if (field[yInt][xInt] == ' ') {
                     return new int[] {yInt, xInt, 1};
                 }

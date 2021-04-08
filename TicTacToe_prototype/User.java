@@ -2,7 +2,6 @@ package tictactoe;
 import java.util.Scanner;
 
 public class User extends Player {
-
     private static final Scanner scanner = new Scanner(System.in);
     public User(char symbol) {
         super(symbol);
@@ -14,7 +13,7 @@ public class User extends Player {
         String[] input;
         int[] coordinates = {0,0,0};
         do {
-            System.out.println("Enter the coordinates: ");
+            System.out.print("Enter the coordinates: > ");
             input = scanner.nextLine().split("\\s+");
             if (input.length != 2) {
                 System.out.println("You need to enter 2 coordinates!");
