@@ -5,8 +5,8 @@ Credit: https://hyperskill.org/projects/81
 ## About
 Everybody remembers this paper-and-pencil game from childhood: Tic-Tac-Toe, also known as Noughts and crosses or Xs and Os. A single mistake usually costs you the game, but thankfully it is simple enough that most players discover the best strategy quickly. Let’s program Tic-Tac-Toe and get playing!
 
-## Current Stage #5: An undefeated champion
-Time for some final touch-ups: structure the code so that it runs smoothly.
+## Current Stage #5/5: An undefeated champion
+Oh no, what have we created here? An unbeatable AI monster! Indeed, this complex algorithm guarantees a win or a draw.
 
 ### Description
 
